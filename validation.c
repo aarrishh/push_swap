@@ -1,8 +1,21 @@
 #include "push_swap.h"
 
-void *add_back(stack *node, stack **a)
+void add_back(stack *node, stack **a)
 {
-	
+	stack *tmp;
+
+	if (*a == NULL)
+	{
+		printf("eeee\n");
+		*a = node;
+		return ;
+	}
+	tmp = *a;
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+	}
+	tmp->next = node;
 }
 
 stack *create_node(int res)
@@ -20,9 +33,10 @@ int main(int argc, char** argv)
 	int i = 1;
 	int res = 0;
 	char** str = NULL;
-	stack* a, b;
+	stack* a;
 	stack* node;
 
+	a = NULL;
 	if (argc >= 2)
 	{
 		while(argv[i])
@@ -41,5 +55,12 @@ int main(int argc, char** argv)
 	}
 	else
 		write(1, "Error\n", 6);
+	while(a != NULL)
+	{
+		i = a->data;
+		printf("data-> %d\n", i);
+		a = a->next;
+	}
+	
 	return(0);
 }
