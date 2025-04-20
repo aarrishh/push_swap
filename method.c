@@ -9,6 +9,7 @@ void sa(stack **a)
 	num = (*a)->data;
 	(*a)->data = (*a)->next->data;
 	(*a)->next->data = num;
+	printf("sa\n");
 }
 void sb(stack **b)
 {
@@ -19,6 +20,7 @@ void sb(stack **b)
 	num = (*b)->data;
 	(*b)->data = (*b)->next->data;
 	(*b)->next->data = num;
+	printf("sb\n");
 }
 
 void pb(stack **a, stack **b)
@@ -38,6 +40,7 @@ void pb(stack **a, stack **b)
 				*b = tmp;
 			}
 	}
+	printf("pb\n");
 }
 
 void pa(stack **a, stack **b)
@@ -54,6 +57,7 @@ void pa(stack **a, stack **b)
 			tmp->next = *a;
 			*a = tmp;
 		}
+	printf("pa\n");
 
 }
 
@@ -72,6 +76,7 @@ void ra(stack **a)
 		idk->next = NULL;
 		tmp->next = idk;
 	}
+	printf("ra\n");
 }
 
 void rb(stack **b)
@@ -89,6 +94,7 @@ void rb(stack **b)
 		idk->next = NULL;
 		tmp->next = idk;
 	}
+	printf("rb\n");
 }
 
 void rra(stack **a)
@@ -98,6 +104,7 @@ void rra(stack **a)
 
 	tmp = *a;
 	idk = tmp;
+	// printf("zzzzz%p\n",(*a)->next);
 	if ((*a)->next != NULL)
 	{
 		while (tmp->next->next != NULL)
@@ -108,6 +115,7 @@ void rra(stack **a)
 		idk->next = *a;
 		*a = idk;
 	}
+	printf("rra\n");
 }
 void rrb(stack **b)
 {
@@ -126,4 +134,106 @@ void rrb(stack **b)
 		idk->next = *b;
 		*b = idk;
 	}
+	printf("rrb\n");
+}
+
+void sort_3(stack **a)
+{
+	int a1;
+	int a2;
+	int a3;
+
+	a1 = (*a)->data;
+	a2 = (*a)->next->data;
+	a3 = (*a)->next->next->data;
+	if (a1 < a2 && a2 < a3)
+		return ;
+	else if (a1 > a2 && a2 > a3 && a3 < a1)
+	{
+		ra(a);
+		sa(a);
+	}
+	else if (a1 < a2 && a2 > a3 && a3 > a1)
+	{
+		rra(a);
+		sa(a);
+	}
+	else if (a1 > a2 && a2 < a3 && a3 > a1)
+		sa(a);
+	else if (a1 > a2 && a2 < a3 && a3 < a1)
+		ra(a);
+	else if (a1 < a2 && a2 > a3 && a3 < a1)
+		rra(a);
+}
+
+int size_list(stack **a)
+{
+	stack	*tmp;
+	int		count;
+
+	count = 0;
+	tmp = *a;
+	while (tmp != NULL)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	return (count);
+}
+
+int small_value(stack **a)
+{
+	stack *tmp;
+	stack *start;
+
+	start = *a;
+	tmp = (*a)->next;
+	while (start != NULL && tmp != NULL)
+	{
+		if (start->data < tmp->data)
+			tmp = tmp->next;
+		else
+		{
+			start = tmp;
+			tmp = tmp->next;
+		}
+	}
+	return (start->data);
+}
+void sort_5(stack **a, stack **b)
+{
+	int		len;
+	int		data;
+	int		count;
+	stack	*tmp;
+
+	tmp = *a;
+	count = 1;
+	while (size_list(a) > 3)
+	{
+		data = small_value(a);
+		len = size_list(a);
+		while (data != tmp->data)
+		{
+			tmp = tmp->next;
+			count++;
+		}
+		// printf("node-i texy listum -> %d\n", number);
+		if (len / 2 < count)
+		{
+			while (tmp->next != NULL)
+				rra(a);
+			rra(a);
+			pb(a, b);
+		}
+		else
+		{
+			while (--count)
+				ra(a);
+			pb(a, b);
+		}
+	}
+	print_stack(*a);
+	printf("\n\n");
+	print_stack(*b);
 }
