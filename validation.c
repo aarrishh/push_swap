@@ -50,7 +50,12 @@ int main(int argc, char** argv)
 			str = ft_split(argv[i], ' ');
 			while (str[j])
 			{
-			res = ft_atoi(str[j]);
+				res = ft_atoi(str[j]);
+				if (res == -1)
+				{
+					write (1, "Error\n", 6);
+					return(0);
+				}
 				node = create_node(res);
 				add_back(node, &a);
 				j++;
@@ -58,21 +63,28 @@ int main(int argc, char** argv)
 			j = 0;
 			i++;
 		}
-		sort_5(&a, &b);
-		i = small_value(&a);
-		// printf("amenapoqr tivy listum -> %d\n", i);
-		// print_stack(a);
+		if (validation(&a) == 1)
+		{
+			if (check_duplicates(a) == 0)
+			{
+				write (1, "Error\n", 6);
+				return(0);
+			}
+			if (size_list(&a) == 1)
+				return(0);
+			else if (size_list(&a) == 2)
+				sa(&a);
+			else if (size_list(&a) == 3)
+				sort_3(&a);
+			else if (size_list(&a) == 4 || size_list(&a) == 5)
+				sort_5(&a, &b);
+		}
+		print_stack(a);
+		printf("\n\n");
+		print_stack(b);
 	}
 	else
 		write(1, "Error\n", 6);
-	// print_stack(a);
-	// write (1, "\n", 1);
-	// while(b != NULL)
-	// {
-	// 	i = b->data;
-	// 	printf("b-i data-> %d\n", i);
-	// 	b = b->next;
-	// }
 	return(0);
 }
 

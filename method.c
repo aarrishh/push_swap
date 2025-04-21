@@ -47,18 +47,20 @@ void pa(stack **a, stack **b)
 {
 	stack *tmp;
 
-	tmp = *b;
-	*b = (*b)->next;
-	tmp->next = NULL;
-	if (!(*b))
-		*b = tmp;
-	else
-		{
-			tmp->next = *a;
+	if ((*b) != NULL)
+	{
+		tmp = *b;
+		*b = (*b)->next;
+		tmp->next = NULL;
+		if (!(*a))
 			*a = tmp;
-		}
+		else
+			{
+				tmp->next = *a;
+				*a = tmp;
+			}
+	}
 	printf("pa\n");
-
 }
 
 void ra(stack **a)
@@ -200,39 +202,55 @@ int small_value(stack **a)
 	}
 	return (start->data);
 }
+
+void move_two_smallest_to_b(int data, int len, stack **a, stack **b)
+{
+	int count;
+	stack *tmp;
+
+	tmp = *a;
+	count = 1;
+	while (data != tmp->data)
+	{
+		tmp = tmp->next;
+		count++;
+	}
+	// printf("node-i texy listum -> %d\n", number);
+	if (len / 2 < count)
+	{
+		while (tmp->next != NULL)
+			rra(a);
+		rra(a);
+		pb(a, b);
+	}
+	else
+	{
+		while (--count)
+			ra(a);
+		pb(a, b);
+	}
+}
+
 void sort_5(stack **a, stack **b)
 {
 	int		len;
 	int		data;
 	int		count;
-	stack	*tmp;
 
-	tmp = *a;
-	count = 1;
-	while (size_list(a) > 3)
+	count = 0;
+	while (count < 2)
 	{
 		data = small_value(a);
 		len = size_list(a);
-		while (data != tmp->data)
-		{
-			tmp = tmp->next;
+		if (len == 3)//count == 1 && 
 			count++;
-		}
-		// printf("node-i texy listum -> %d\n", number);
-		if (len / 2 < count)
-		{
-			while (tmp->next != NULL)
-				rra(a);
-			rra(a);
-			pb(a, b);
-		}
 		else
-		{
-			while (--count)
-				ra(a);
-			pb(a, b);
-		}
+			move_two_smallest_to_b(data, len, a, b);
+		count++;
 	}
+	sort_3(a);
+	pa(a, b);
+	pa(a, b);
 	print_stack(*a);
 	printf("\n\n");
 	print_stack(*b);
