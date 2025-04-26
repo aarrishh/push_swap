@@ -55,10 +55,10 @@ void pa(stack **a, stack **b)
 		if (!(*a))
 			*a = tmp;
 		else
-			{
-				tmp->next = *a;
-				*a = tmp;
-			}
+		{
+			tmp->next = *a;
+			*a = tmp;
+		}
 	}
 	printf("pa\n");
 }
@@ -168,16 +168,14 @@ void sort_3(stack **a)
 		rra(a);
 }
 
-int size_list(stack **a)
+int size_list(stack *a)
 {
-	stack	*tmp;
 	int		count;
 
 	count = 0;
-	tmp = *a;
-	while (tmp != NULL)
+	while (a != NULL)
 	{
-		tmp = tmp->next;
+		a = a->next;
 		count++;
 	}
 	return (count);
@@ -237,11 +235,12 @@ void sort_5(stack **a, stack **b)
 	int		data;
 	int		count;
 
+	printf("yhn\n");
 	count = 0;
 	while (count < 2)
 	{
 		data = small_value(a);
-		len = size_list(a);
+		len = size_list(*a);
 		if (len == 3)//count == 1 && 
 			count++;
 		else
@@ -251,7 +250,92 @@ void sort_5(stack **a, stack **b)
 	sort_3(a);
 	pa(a, b);
 	pa(a, b);
-	print_stack(*a);
-	printf("\n\n");
-	print_stack(*b);
+}
+
+void	indexing(stack **a)
+{
+	int count;
+	stack *tmp;
+	stack *current;
+
+	count = 0;
+	current = *a;
+	tmp = *a;
+	while (tmp)
+	{
+		tmp->index = 0;
+		tmp = tmp->next;
+	}
+	tmp = (*a)->next;;
+	while (current)
+	{
+		while (tmp)
+		{
+			if (current->data > tmp->data)
+				current->index = count + 1;
+			else
+				
+		}
+	}
+}
+
+int root_n(int size)
+{
+	int i;
+
+	i = 0;
+	if (i < size / 2)
+	{
+		while (i * i <= size)
+		{
+			if (i * i == size)
+				return (i);
+			else
+				i++;
+		}
+	}
+	return (0);
+}
+
+int log_n(int size)
+{
+	int count;
+
+	count = 0;
+	while (size > 1)
+	{
+		size = size / 2;
+		count++;
+	}
+	return (count);
+}
+
+int formula_n(int size)
+{
+	return (root_n(size) + log_n(size));
+}
+
+void butterfly(stack **a, stack **b, int n)
+{
+	int count;
+	stack *tmp;
+
+	count = 0;
+	tmp = *a;
+	while (tmp != NULL)
+	{
+		if (tmp->data <= count)//data-n poxel grel index
+		{
+			pb(a, b);
+			rb(b);
+			count++;
+		}
+		else if (tmp->data <= count + n)
+		{
+			pb(a, b);
+			count++;
+		}
+		else
+			ra(a);
+	}
 }

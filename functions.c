@@ -97,15 +97,15 @@ char	**ft_split(char const *s, char c)
 	return (buffer);
 }
 
-int	ft_atoi(const char *str)
+long long	ft_atoi(const char *str)
 {
 	int	i;
-	int	sign;
-	int	y;
+	long long	sign;
+	long long	res;
 
 	i = 0;
 	sign = 1;
-	y = 0;
+	res = 0;
 	while (str[i] && ((str[i] >= 9 && str[i] <= 13)
 		|| str[i] == 32))
 		i++;
@@ -116,12 +116,15 @@ int	ft_atoi(const char *str)
 	}
 	else if (str[i] == '+')
 		i++;
+	if (str[i] == '\0')
+		return (-1);
 	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
-		y = (y * 10) + (str[i] - 48);
+		res = (res * 10) + (str[i] - 48);
 		i++;
 	}
 	if (str[i] && !(str[i] >= '0' && str[i] <= '9'))
 		return(-1);
-	return (sign * y);
+	return (sign * res);
 }
+

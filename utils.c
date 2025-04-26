@@ -15,15 +15,14 @@ int str_contain_only_white_spaces(char *str)
 	return 1;
 }
 
-int validation (stack **a)
+int check_sorted(stack *a)
 {
-	stack *tmp;
-
-	tmp = *a;
-	while (tmp->next != NULL)
+	if (a == NULL)
+		return (0);
+	while (a->next != NULL)
 	{
-		if (tmp->data < tmp->next->data)
-			tmp = tmp->next;
+		if (a->data < a->next->data)
+			a = a->next;
 		else
 			return(1);
 	}
@@ -34,9 +33,9 @@ int check_duplicates(stack *a)
 {
 	stack *tmp;
 
-	tmp = a->next;
 	while (a != NULL)
 	{
+		tmp = a->next;
 		while (tmp != NULL)
 		{
 			if (a->data != tmp->data)
@@ -45,20 +44,23 @@ int check_duplicates(stack *a)
 				return(0);
 		}
 		a = a->next;
-		tmp = a->next;
 	}
 	return(1);
 }
 
 int check_max_min(stack *a)
 {
-	stack *tmp;
-
-	tmp = a;
 	while (a != NULL)
 	{
-		if (a->data == 2147483648 && )
+		if (a->data > INT_MAX || a->data < INT_MIN)
+			return(-1);
 		a = a->next;
-		tmp = a->next;
 	}
+	return(0); //doesn't work
+}
+
+void	print_error(void)
+{
+	write (1, "Error\n", 6);
+	exit(1);
 }
