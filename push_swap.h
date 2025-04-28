@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:46:12 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/04/26 21:41:17 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/04/28 20:08:33 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void		rrb(stack **b);
 void		print_error(void);
 void		sort_3(stack **a);
 void		indexing(stack **a);
+void		check_max_min(long long num);
 void		move_two_smallest_to_b(int data, int len, stack **a, stack **b);
 int 		str_contain_only_white_spaces(char *str);
 int			check_duplicates(stack *a);
-int			check_max_min(stack *a);
 int			small_value(stack **a);
 int			check_sorted(stack *a);
 int			size_list(stack *a);

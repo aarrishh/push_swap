@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/28 21:00:36 by arimanuk          #+#    #+#             */
+/*   Updated: 2025/04/28 21:09:48 by arimanuk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int str_contain_only_white_spaces(char *str)
@@ -48,16 +60,11 @@ int check_duplicates(stack *a)
 	return(1);
 }
 
-int check_max_min(stack *a)
-{
-	while (a != NULL)
-	{
-		if (a->data > INT_MAX || a->data < INT_MIN)
-			return(-1);
-		a = a->next;
-	}
-	return(0); //doesn't work
-}
+// void	check_max_min(long long num)
+// {
+// 	if (num > INT_MAX || num < INT_MIN)
+// 		print_error();
+// }
 
 void	print_error(void)
 {

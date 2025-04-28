@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   method_1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/28 21:02:18 by arimanuk          #+#    #+#             */
+/*   Updated: 2025/04/28 22:21:25 by arimanuk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void sa(stack **a)
@@ -258,24 +270,29 @@ void	indexing(stack **a)
 	stack *tmp;
 	stack *current;
 
-	count = 0;
 	current = *a;
 	tmp = *a;
+	count = 0;
 	while (tmp)
 	{
 		tmp->index = 0;
 		tmp = tmp->next;
 	}
-	tmp = (*a)->next;;
+	tmp = (*a)->next;
 	while (current)
 	{
 		while (tmp)
 		{
 			if (current->data > tmp->data)
-				current->index = count + 1;
+			{
+				current->index++;
+				tmp = tmp->next;
+			}
 			else
-				
+				tmp = tmp->next;
 		}
+		tmp = *a;
+		current = current->next;
 	}
 }
 
@@ -315,22 +332,43 @@ int formula_n(int size)
 	return (root_n(size) + log_n(size));
 }
 
-void butterfly(stack **a, stack **b, int n)
+void	move_b_to_a(stack **a, stack **b)//poxel logikan
 {
 	int count;
 	stack *tmp;
 
-	count = 0;
-	tmp = *a;
-	while (tmp != NULL)
+	count = size_list(*b) - 1;
+	while (count > 0)
 	{
-		if (tmp->data <= count)//data-n poxel grel index
+		tmp = *b;
+		while (tmp)
+		{
+			if (count == tmp->index)
+			{
+				if (tmp->next == NULL)
+					rrb(b);
+				pa(a, b);
+			}
+			tmp = tmp->next;
+		}
+		count--;
+	}
+}
+
+void	butterfly(stack **a, stack **b, int n)
+{
+	int count;
+
+	count = 0;
+	while (*a != NULL)
+	{
+		if ((*a)->index <= count)
 		{
 			pb(a, b);
 			rb(b);
 			count++;
 		}
-		else if (tmp->data <= count + n)
+		else if ((*a)->index <= count + n)
 		{
 			pb(a, b);
 			count++;
@@ -338,4 +376,7 @@ void butterfly(stack **a, stack **b, int n)
 		else
 			ra(a);
 	}
+	print_stack_b(*b);
+	print_stack_a(*a);
+	move_b_to_a(a, b);
 }

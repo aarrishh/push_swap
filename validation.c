@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	(void)argv;
 	int j = 0;
 	int i = 1;
-	int res = 0;
+	long long res = 0;
 	char** str = NULL;
 	stack* a;
 	stack* b;
@@ -49,6 +49,7 @@ int main(int argc, char** argv)
 			while (str[j])
 			{
 				res = ft_atoi(str[j]);
+				// check_max_min(res);
 				if (res == -1)
 					print_error();
 				node = create_node(res);
@@ -60,7 +61,7 @@ int main(int argc, char** argv)
 		}
 		if (check_sorted(a) == 1)
 		{
-			i = check_max_min(a);
+			// i = check_max_min(a);
 			if (check_duplicates(a) == 0)
 				print_error();
 			if (size_list(a) == 1)
@@ -72,11 +73,14 @@ int main(int argc, char** argv)
 			else if (size_list(a) == 4 || size_list(a) == 5)
 				sort_5(&a, &b);
 			else
+			{
+				indexing(&a);
 				butterfly(&a, &b, formula_n(size_list(a)));
+			}
 		}
-		print_stack_a(a);
-		printf("\n\n");
-		print_stack_b(b);
+		// print_stack_a(a);
+		// printf("\n\n");
+		// print_stack_b(b);
 	}
 	else
 		print_error();
@@ -87,7 +91,7 @@ void print_stack_a(stack* tmp)
 {
 	while(tmp != NULL)
 	{
-		printf("a-i data-> %d\n", tmp->data);
+		printf("a-i index-> %d\na-i data-> %d\n\n", tmp->index, tmp->data);
 		tmp = tmp->next;
 	}
 }
@@ -96,7 +100,7 @@ void print_stack_b(stack* tmp)
 {
 	while(tmp != NULL)
 	{
-		printf("b-i data-> %d\n", tmp->data);
+		printf("b-i index-> %d\nb-i data-> %d\n\n", tmp->index, tmp->data);
 		tmp = tmp->next;
 	}
 }
