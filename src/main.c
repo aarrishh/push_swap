@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:57:31 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 22:19:09 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/01 22:30:01 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,15 @@ int main(int argc, char** argv)
 	{
 		while(argv[i])
 		{
-			if (str_contain_only_white_spaces(argv[i]) == 1)
-				print_error(&a);
+			if (str_contain_only_white_spaces(argv[i]) == 1)//esi okeya
+				print_error(&a, str);
 			str = ft_split(argv[i], ' ');
 			while (str[j])
 			{
 				res = ft_atoi(str[j]);
-				check_max_min(res, &a);
+				check_max_min(res, &a, str);
 				if (res == -1)
-					print_error(&a);
+					print_error(&a, str);
 				node = create_node(res);
 				add_back(node, &a);
 				j++;
@@ -100,7 +100,7 @@ int main(int argc, char** argv)
 		if (check_sorted(a) == 1)
 		{
 			if (check_duplicates(a) == 0)
-				print_error(&a);
+				print_error(&a, str);
 			if (size_list(a) == 1)
 				return(0);
 			else if (size_list(a) == 2)

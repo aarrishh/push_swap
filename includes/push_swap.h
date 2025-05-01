@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:46:12 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 22:18:31 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/01 22:28:57 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void		rb(t_stack **b);
 void		rra(t_stack **a);
 void		free_split(char **str);
 void		rrb(t_stack **b);
-void		print_error(t_stack **stack);
+void		print_error(t_stack **stack, char** str);
 void		sort_3(t_stack **a);
 void		indexing(t_stack **a);
 void		indexing_b(t_stack **b);
-void		check_max_min(long long num, t_stack **a);
+void		check_max_min(long long num, t_stack **a, char** str);
 void		move_two_smallest_to_b(int data, int len, t_stack **a, t_stack **b);
 int 		str_contain_only_white_spaces(char *str);
 int			check_duplicates(t_stack *a);

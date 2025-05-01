@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:56:38 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 22:19:57 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/01 22:29:30 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int check_duplicates(t_stack *a)
 	return(1);
 }
 
-void	check_max_min(long long num, t_stack **a)
+void	check_max_min(long long num, t_stack **a, char **str)
 {
 	if ((num > INT_MAX || num < INT_MIN) || 
 		(num > LONG_MAX || num < LONG_MIN) || 
 		(num > LLONG_MAX || num < LLONG_MIN))
-		print_error(a);
+		print_error(a, str);
 }
 
 void	free_stack(t_stack **stack)
@@ -67,10 +67,11 @@ void	free_stack(t_stack **stack)
 	}
 }
 
-void	print_error(t_stack **a)
+void	print_error(t_stack **a, char** str)
 {
 	if (*a && a)
 		free_stack(a);
+	free_split(str);
 	write (1, "Error\n", 6);
 	exit(1);
 }
