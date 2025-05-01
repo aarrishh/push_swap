@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:57:31 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 19:31:19 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/01 22:19:09 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,17 @@ t_stack *create_node(int res)
 	return(new_node);
 }
 
+void	free_split(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
+	str = NULL;
+}
+
 int main(int argc, char** argv)
 {
 	int j = 0;
@@ -81,6 +92,8 @@ int main(int argc, char** argv)
 				add_back(node, &a);
 				j++;
 			}
+			free_split(str);
+			str = NULL;
 			j = 0;
 			i++;
 		}
@@ -102,6 +115,9 @@ int main(int argc, char** argv)
 				butterfly(&a, &b, formula_n(size_list(a)));
 			}
 		}
+		free_stack(&a);
+		free_stack(&b);
+		
 		// print_stack_b(b);
 		// print_stack_a(a);
 	}

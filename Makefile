@@ -10,7 +10,7 @@ SRC =  $(SRC_DIR)/butterfly.c $(SRC_DIR)/functions.c  $(SRC_DIR)/functions1.c \
 OBJ = $(SRC:.c=.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)# -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror -I $(INC_DIR)  -fsanitize=address -g3
 
 RM = rm -f
 

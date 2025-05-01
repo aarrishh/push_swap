@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:46:12 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 17:23:27 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/01 22:18:31 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_stack {
 } t_stack;
 
 char		**ft_split(char const *s, char c);
+void		free_stack(t_stack **stack);
 void		butterfly(t_stack **a, t_stack **b, int n);
 void		sort_5(t_stack **a, t_stack **b);
 void 		print_stack_a(t_stack* tmp);//kjnjes
@@ -37,6 +38,7 @@ void		sb(t_stack **b);
 void		ra(t_stack **a);
 void		rb(t_stack **b);
 void		rra(t_stack **a);
+void		free_split(char **str);
 void		rrb(t_stack **b);
 void		print_error(t_stack **stack);
 void		sort_3(t_stack **a);

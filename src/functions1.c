@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:56:38 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 20:22:29 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/01 22:19:57 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	free_stack(t_stack **stack)
 	t_stack	*tmp;
 
 	tmp = (*stack);
-	while (*stack && stack)
+	while (stack && *stack)
 	{
 		tmp = tmp ->next;
 		free(*stack);
