@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   functions1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 21:00:36 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/04/28 21:09:48 by arimanuk         ###   ########.fr       */
+/*   Created: 2025/05/01 15:56:38 by arimanuk          #+#    #+#             */
+/*   Updated: 2025/05/01 20:22:29 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,9 @@ int str_contain_only_white_spaces(char *str)
 	return 1;
 }
 
-int check_sorted(stack *a)
+int check_duplicates(t_stack *a)
 {
-	if (a == NULL)
-		return (0);
-	while (a->next != NULL)
-	{
-		if (a->data < a->next->data)
-			a = a->next;
-		else
-			return(1);
-	}
-	return(0);
-}
-
-int check_duplicates(stack *a)
-{
-	stack *tmp;
+	t_stack *tmp;
 
 	while (a != NULL)
 	{
@@ -60,14 +46,51 @@ int check_duplicates(stack *a)
 	return(1);
 }
 
-// void	check_max_min(long long num)
-// {
-// 	if (num > INT_MAX || num < INT_MIN)
-// 		print_error();
-// }
-
-void	print_error(void)
+void	check_max_min(long long num, t_stack **a)
 {
+	if ((num > INT_MAX || num < INT_MIN) || 
+		(num > LONG_MAX || num < LONG_MIN) || 
+		(num > LLONG_MAX || num < LLONG_MIN))
+		print_error(a);
+}
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*tmp;
+
+	tmp = (*stack);
+	while (*stack && stack)
+	{
+		tmp = tmp ->next;
+		free(*stack);
+		*stack = tmp;
+	}
+}
+
+void	print_error(t_stack **a)
+{
+	if (*a && a)
+		free_stack(a);
 	write (1, "Error\n", 6);
 	exit(1);
+}
+
+void print_stack_a(t_stack *tmp)
+{
+	while(tmp != NULL)
+	{
+		printf("a-i index-> %d\na-i data-> %d\n", tmp->index, tmp->data);
+		printf("\n");
+		tmp = tmp->next;
+	}
+}
+
+void print_stack_b(t_stack *tmp)
+{
+	while(tmp != NULL)
+	{
+		printf("b-i hert-> %d\nb-i index-> %d\nb-i data-> %d\n", tmp->index_b, tmp->index, tmp->data);
+		printf("\n");
+		tmp = tmp->next;
+	}
 }

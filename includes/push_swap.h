@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:46:12 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/04/28 20:08:33 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/01 17:23:27 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,37 @@
 #include <unistd.h>
 #include <limits.h>
 
-typedef struct stack {
+typedef struct s_stack {
 	int index;
+	int index_b;
 	int data;
-	struct stack* next;
-} stack;
+	struct s_stack* next;
+} t_stack;
 
 char		**ft_split(char const *s, char c);
-void		butterfly(stack **a, stack **b, int n);
-void		sort_5(stack **a, stack **b);
-void 		print_stack_a(stack* tmp);//kjnjes
-void 		print_stack_b(stack* tmp);//kjnjes;
-void 		pb(stack **a, stack **b);
-void 		pa(stack **a, stack **b);
-void		sa(stack **a);
-void		sb(stack **b);
-void		ra(stack **a);
-void		rb(stack **b);
-void		rra(stack **a);
-void		rrb(stack **b);
-void		print_error(void);
-void		sort_3(stack **a);
-void		indexing(stack **a);
-void		check_max_min(long long num);
-void		move_two_smallest_to_b(int data, int len, stack **a, stack **b);
+void		butterfly(t_stack **a, t_stack **b, int n);
+void		sort_5(t_stack **a, t_stack **b);
+void 		print_stack_a(t_stack* tmp);//kjnjes
+void 		print_stack_b(t_stack* tmp);//kjnjes;
+void 		pb(t_stack **a, t_stack **b);
+void 		pa(t_stack **a, t_stack **b);
+void		sa(t_stack **a);
+void		sb(t_stack **b);
+void		ra(t_stack **a);
+void		rb(t_stack **b);
+void		rra(t_stack **a);
+void		rrb(t_stack **b);
+void		print_error(t_stack **stack);
+void		sort_3(t_stack **a);
+void		indexing(t_stack **a);
+void		indexing_b(t_stack **b);
+void		check_max_min(long long num, t_stack **a);
+void		move_two_smallest_to_b(int data, int len, t_stack **a, t_stack **b);
 int 		str_contain_only_white_spaces(char *str);
-int			check_duplicates(stack *a);
-int			small_value(stack **a);
-int			check_sorted(stack *a);
-int			size_list(stack *a);
+int			check_duplicates(t_stack *a);
+int			small_value(t_stack **a);
+int			check_sorted(t_stack *a);
+int			size_list(t_stack *a);
 int			formula_n(int size);
 int			log_n(int size);
 long long	ft_atoi(const char *str);
