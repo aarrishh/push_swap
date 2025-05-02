@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 17:46:12 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/02 21:10:57 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/02 22:03:07 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		indexing_b(t_stack **b);
 void		free_stack(t_stack **stack);
 void		pb(t_stack **a, t_stack **b);
 void		pa(t_stack **a, t_stack **b);
+void		helper(char **str, t_stack **a);
 void		sort_5(t_stack **a, t_stack **b);
 void		move_b_to_a(t_stack **a, t_stack **b);
 void		print_error(t_stack **stack, char **str);

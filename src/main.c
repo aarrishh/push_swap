@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:57:31 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/02 21:43:11 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/02 22:01:07 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,15 @@ void	free_split(char **str)
 
 int	main(int argc, char **argv)
 {
-	int			j;
 	int			i;
-	long long	res;
 	char		**str;
 	t_stack		*a;
 	t_stack		*b;
-	t_stack		*node;
 
 	a = NULL;
 	b = NULL;
 	str = NULL;
-	j = 0;
 	i = 1;
-	res = 0;
 	if (argc == 1)
 		return (0);
 	if (argc >= 2)
@@ -87,21 +82,8 @@ int	main(int argc, char **argv)
 			if (str_contain_only_white_spaces(argv[i]) == 1)
 				print_error(&a, str);
 			str = ft_split(argv[i], ' ');
-			while (str[j])
-			{
-				res = ft_atoi(str[j]);
-				check_max_min(res, &a, str);
-				if (res == -1)
-				{
-					free_split(str);
-					print_error(&a, str);
-				}
-				node = create_node(res);
-				add_back(node, &a);
-				j++;
-			}
+			helper(str, &a);
 			free_split(str);
-			j = 0;
 			i++;
 		}
 		check(&a, &b, str);
@@ -109,4 +91,29 @@ int	main(int argc, char **argv)
 		free_stack(&b);
 	}
 	return (0);
+}
+
+
+void	helper(char **str, t_stack **a)
+{
+	t_stack		*node;
+	long long	res;
+	int			j;
+
+	j = 0;
+	res = 0;
+	node = NULL;
+	while (str[j])
+	{
+		res = ft_atoi(str[j]);
+		check_max_min(res, a, str);
+		if (res == -1)
+		{
+			free_split(str);
+			print_error(a, str);
+		}
+		node = create_node(res);
+		add_back(node, a);
+		j++;
+	}
 }
