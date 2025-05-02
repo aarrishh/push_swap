@@ -6,16 +6,16 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:48:32 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 15:49:25 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:27:03 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void rb(t_stack **b)
+void	rb(t_stack **b)
 {
-	t_stack* tmp;
-	t_stack* idk;
+	t_stack	*tmp;
+	t_stack	*idk;
 
 	if ((*b)->next != NULL)
 	{
@@ -27,13 +27,13 @@ void rb(t_stack **b)
 		idk->next = NULL;
 		tmp->next = idk;
 	}
-	printf("rb\n");
+	write (1, "rb\n", 3);
 }
 
-void rra(t_stack **a)
+void	rra(t_stack **a)
 {
-	t_stack* tmp;
-	t_stack* idk;
+	t_stack	*tmp;
+	t_stack	*idk;
 
 	tmp = *a;
 	idk = tmp;
@@ -49,10 +49,11 @@ void rra(t_stack **a)
 	}
 	write(1, "rra\n", 4);
 }
-void rrb(t_stack **b)
+
+void	rrb(t_stack **b)
 {
-	t_stack* tmp;
-	t_stack* idk;
+	t_stack	*tmp;
+	t_stack	*idk;
 
 	tmp = *b;
 	idk = tmp;
@@ -66,5 +67,5 @@ void rrb(t_stack **b)
 		idk->next = *b;
 		*b = idk;
 	}
-	printf("rrb\n");
+	write (1, "rrb\n", 4);
 }

@@ -6,38 +6,39 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:47:41 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 20:30:49 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:24:36 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sa(t_stack **a)
+void	sa(t_stack **a)
 {
-	int num;
+	int	num;
 
 	if (!a || !(*a) || (*a)->next == NULL)
 		return ;
 	num = (*a)->data;
 	(*a)->data = (*a)->next->data;
 	(*a)->next->data = num;
-	printf("sa\n");
+	write (1, "sa\n", 3);
 }
-void sb(t_stack **b)
+
+void	sb(t_stack **b)
 {
-	int num;
+	int	num;
 
 	if (!b || !(*b) || (*b)->next == NULL)
 		return ;
 	num = (*b)->data;
 	(*b)->data = (*b)->next->data;
 	(*b)->next->data = num;
-	printf("sb\n");
+	write (1, "sb\n", 3);
 }
 
-void pb(t_stack **a, t_stack **b)
+void	pb(t_stack **a, t_stack **b)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if ((*a) != NULL)
 	{
@@ -47,17 +48,17 @@ void pb(t_stack **a, t_stack **b)
 		if (!(*b))
 			*b = tmp;
 		else
-			{
-				tmp->next = *b;
-				*b = tmp;
-			}
+		{
+			tmp->next = *b;
+			*b = tmp;
+		}
 	}
-	printf("pb\n");
+	write (1, "pb\n", 3);
 }
 
-void 	pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if ((*b) != NULL)
 	{
@@ -72,13 +73,13 @@ void 	pa(t_stack **a, t_stack **b)
 			*a = tmp;
 		}
 	}
-	printf("pa\n");
+	write (1, "pa\n", 3);
 }
 
-void ra(t_stack **a)
+void	ra(t_stack **a)
 {
-	t_stack* tmp;
-	t_stack* idk;
+	t_stack	*tmp;
+	t_stack	*idk;
 
 	if ((*a)->next != NULL)
 	{
@@ -90,5 +91,5 @@ void ra(t_stack **a)
 		idk->next = NULL;
 		tmp->next = idk;
 	}
-	printf("ra\n");
+	write (1, "ra\n", 3);
 }

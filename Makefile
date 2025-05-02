@@ -2,9 +2,10 @@ NAME = push_swap
 INC_DIR = includes
 SRC_DIR = src
 
-SRC =  $(SRC_DIR)/butterfly.c $(SRC_DIR)/functions.c  $(SRC_DIR)/functions1.c \
-		$(SRC_DIR)/main.c  $(SRC_DIR)/operations.c  $(SRC_DIR)/operations1.c \
-		$(SRC_DIR)/sorting.c  $(SRC_DIR)/utils.c
+SRC =  $(SRC_DIR)/butterfly.c  $(SRC_DIR)/butterfly1.c  $(SRC_DIR)/functions.c \
+		$(SRC_DIR)/functions1.c  $(SRC_DIR)/main.c  $(SRC_DIR)/operations.c \
+		$(SRC_DIR)/operations1.c  $(SRC_DIR)/sorting.c  $(SRC_DIR)/split.c \
+		$(SRC_DIR)/validation.c
 
 
 OBJ = $(SRC:.c=.o)

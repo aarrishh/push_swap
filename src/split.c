@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:46:39 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 15:46:41 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/02 19:13:36 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ static int	getword(char const *s, char c)
 static int	malloc_char(char const *s, char c, int *i, int *start)
 {
 	int	len;
-	int	j;
 
-	j = 0;
 	len = 0;
 	while (s[*i] == c)
 		(*i)++;

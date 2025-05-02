@@ -6,15 +6,15 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:54:09 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 17:12:27 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/02 20:37:54 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int size_list(t_stack *a)
+int	size_list(t_stack *a)
 {
-	int		count;
+	int	count;
 
 	count = 0;
 	while (a != NULL)
@@ -25,30 +25,10 @@ int size_list(t_stack *a)
 	return (count);
 }
 
-int small_value(t_stack **a)
+void	move_two_smallest_to_b(int data, int len, t_stack **a, t_stack **b)
 {
-	t_stack *tmp;
-	t_stack *start;
-
-	start = *a;
-	tmp = (*a)->next;
-	while (start != NULL && tmp != NULL)
-	{
-		if (start->data < tmp->data)
-			tmp = tmp->next;
-		else
-		{
-			start = tmp;
-			tmp = tmp->next;
-		}
-	}
-	return (start->data);
-}
-
-void move_two_smallest_to_b(int data, int len, t_stack **a, t_stack **b)
-{
-	int count;
-	t_stack *tmp;
+	int		count;
+	t_stack	*tmp;
 
 	tmp = *a;
 	count = 1;
@@ -74,13 +54,11 @@ void move_two_smallest_to_b(int data, int len, t_stack **a, t_stack **b)
 
 void	indexing(t_stack **a)
 {
-	int count;
-	t_stack *tmp;
-	t_stack *current;
+	t_stack	*tmp;
+	t_stack	*current;
 
 	current = *a;
 	tmp = *a;
-	count = 0;
 	while (tmp)
 	{
 		tmp->index = 0;
@@ -92,12 +70,8 @@ void	indexing(t_stack **a)
 		while (tmp)
 		{
 			if (current->data > tmp->data)
-			{
 				current->index++;
-				tmp = tmp->next;
-			}
-			else
-				tmp = tmp->next;
+			tmp = tmp->next;
 		}
 		tmp = *a;
 		current = current->next;
@@ -106,8 +80,8 @@ void	indexing(t_stack **a)
 
 long long	ft_atoi(const char *str)
 {
-	int	i;
-	int	sign;
+	int			i;
+	int			sign;
 	long long	res;
 
 	i = 0;
@@ -129,6 +103,6 @@ long long	ft_atoi(const char *str)
 		i++;
 	}
 	if (str[i] && !(str[i] >= '0' && str[i] <= '9'))
-		return(-1);
+		return (-1);
 	return (sign * res);
 }
