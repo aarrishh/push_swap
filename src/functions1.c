@@ -6,7 +6,7 @@
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:56:38 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/01 22:29:30 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/02 18:55:50 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void	free_stack(t_stack **stack)
 
 void	print_error(t_stack **a, char** str)
 {
+	(void)str;
 	if (*a && a)
 		free_stack(a);
-	free_split(str);
 	write (1, "Error\n", 6);
 	exit(1);
 }
