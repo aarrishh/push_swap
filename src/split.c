@@ -1,108 +1,125 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arimanuk <arimanuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:46:39 by arimanuk          #+#    #+#             */
-/*   Updated: 2025/05/02 19:13:36 by arimanuk         ###   ########.fr       */
+/*   Updated: 2025/05/04 15:12:49 by arimanuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	ft_strlen(const char *str)
+char	*my_strncpy(char *dest, const char *src, unsigned int n)
 {
-	size_t	i;
+	unsigned int	i;
 
-	if (str == NULL)
-		return (0);
 	i = 0;
-	while (str[i])
+	while (i < n && src[i] != '\0')
+	{
+		dest[i] = src[i];
 		i++;
-	return (i);
-}
-
-static int	getword(char const *s, char c)
-{
-	int	i;
-	int	count_word;
-	int	len;
-
-	i = 0;
-	count_word = 0;
-	len = ft_strlen(s);
-	while (s && s[i])
-	{
-		while (s[i] && (s[i] == c))
-			i++;
-		while (s[i] && (s[i] != c))
-			i++;
-		if ((s[i - 1] == c) && (i == len))
-			count_word--;
-		count_word++;
 	}
-	return (count_word);
-}
-
-static int	malloc_char(char const *s, char c, int *i, int *start)
-{
-	int	len;
-
-	len = 0;
-	while (s[*i] == c)
-		(*i)++;
-	*start = *i;
-	while (s[*i] && s[*i] != c)
+	while (i < n)
 	{
-		len++;
-		(*i)++;
+		dest[i] = '\0';
+		i++;
 	}
-	return (len);
+	return (dest);
 }
 
-static char	*func_copy(char const *s, int len_current_line, int start)
+int	foo_sum_tar(char const *s)
 {
-	int		j;
-	char	*line;
+	int	sum_tar;
+	int	sum_space;
 
-	j = 0;
-	line = malloc((len_current_line + 1) * sizeof(char));
-	while (j < len_current_line)
+	sum_tar = 0;
+	sum_space = 0;
+	while (is_white_space(*s))
+		s++;
+	while (*s != '\0')
 	{
-		line[j] = s[start + j];
-		j++;
-	}
-	line[j] = '\0';
-	return (line);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		i;
-	char	**buffer;
-	int		ind;
-	int		count_word;
-	int		start;
-
-	i = 0;
-	ind = -1;
-	count_word = getword(s, c);
-	buffer = (char **)malloc((count_word + 1) * sizeof(char *));
-	if (buffer == NULL)
-		return (NULL);
-	buffer[count_word] = NULL;
-	while (count_word--)
-	{
-		buffer[++ind] = func_copy(s, malloc_char(s, c, &i, &start), start);
-		if (!buffer[ind])
+		if (is_white_space(*s))
 		{
-			while (ind)
-				free(buffer[--ind]);
-			free(buffer);
-			return (NULL);
+			return (sum_tar);
+		}
+		else
+		{
+			s++;
+			sum_tar++;
 		}
 	}
-	return (buffer);
+	return (sum_tar);
+}
+
+int	check_(char **arr, const char *s, int count)
+{
+	int	i;
+	int	len_word;
+
+	i = 0;
+	while (i < count)
+	{
+		while (is_white_space(*s))
+			s++;
+		len_word = foo_sum_tar(s);
+		arr[i] = malloc(sizeof(char) * (len_word + 1));
+		if (!arr[i])
+		{
+			while (i >= 0)
+				free(arr[i--]);
+			free(arr);
+			return (1);
+		}
+		my_strncpy(arr[i], s, len_word);
+		arr[i][len_word] = '\0';
+		s += (len_word + 1);
+		i++;
+	}
+	return (0);
+}
+
+int	func_count_word(const char *s)
+{
+	int	i;
+	int	count;
+	int	ban;
+
+	i = 0;
+	count = 0;
+	while (s[i] != '\0')
+	{
+		while (str_contain_only_white_spaces(s) && s[i] != '\0')
+		{
+			i++;
+			ban = 0;
+		}
+		while (!str_contain_only_white_spaces(s) && s[i] != '\0')
+		{
+			i++;
+			ban = 1;
+		}
+		if (ban == 1)
+			count++;
+	}
+	return (count);
+}
+
+char	**ft_split(char const *s)
+{
+	int		count_word;
+	char	**arr;
+
+	if (s == NULL)
+		return (NULL);
+	count_word = func_count_word(s);
+	arr = malloc(sizeof(char *) * (count_word + 1));
+	if (!arr)
+		return (NULL);
+	arr[count_word] = NULL;
+	if (check_(arr, s, count_word))
+		return (NULL);
+	return (arr);
 }
